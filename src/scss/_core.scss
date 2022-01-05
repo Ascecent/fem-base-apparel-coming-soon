@@ -1,0 +1,157 @@
+@use "sass:math";
+
+/*=========================================================
+================       CORE STYLES        =================
+=========================================================*/
+
+// -------------------------------
+// FUNCTIONS
+// -------------------------------
+
+// Convert px to rem units
+@function pxToRem($unit) {
+  @return math.div($unit, 16) + rem;
+}
+
+// -------------------------------
+
+// -------------------------------
+// VARIABLES
+// -------------------------------
+
+// ------------
+// BREAKPOINTS
+// ------------
+
+$breakpoints: (
+  xsm: 400px,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xlg: 1400px,
+);
+
+// ------------
+
+// ------------
+// COLORS
+// ------------
+
+// Primary
+$desaturatedRed: hsl(0, 36%, 70%);
+$softRed: hsl(0, 93%, 68%);
+
+// Neutral
+$darkGrayishRed: hsl(0, 6%, 24%);
+$white: rgb(255, 255, 255);
+$black: rgb(48, 33, 33);
+
+// Linear
+$whiteLinearGradient: linear-gradient(
+  135deg,
+  hsl(0, 0%, 100%),
+  hsl(0, 100%, 98%)
+);
+$redLinearGradient: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+
+// ------------
+
+// ------------
+// FONTS
+// ------------
+
+// Family
+$fontFamilyJosefin: "Josefin Sans", sans-serif;
+
+// Sizes
+$fontSizeNormal: pxToRem(16);
+$fontSizeHeadingSm: pxToRem(40);
+$fontSizeHeadingLg: pxToRem(63);
+
+// Weights
+$fontWeightLight: 300;
+$fontWeightRegular: 400;
+$fontWeightMedium: 500;
+$fontWeightSemiBold: 600;
+$fontWeightBold: 700;
+
+// ------------
+
+// -------------------------------
+
+// -------------------------------
+// MIXINS
+// -------------------------------
+
+// Media breakpoint min-width
+@mixin media-breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+// Media breakpoint max-width
+@mixin media-breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+// White linear gradient
+@mixin white-linear-gradient {
+  background: $whiteLinearGradient;
+}
+
+// Red linear gradient
+@mixin red-linear-gradient {
+  background: $redLinearGradient;
+}
+
+// -------------------------------
+
+// -------------------------------
+// UTILITIES
+// -------------------------------
+
+.hide-for-mobile {
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+}
+
+.hide-for-desktop {
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}
+
+// -------------------------------
+
+// -------------------------------
+// GLOBAL STYLES
+// -------------------------------
+
+body {
+  min-height: 100vh;
+  font: {
+    family: $fontFamilyJosefin;
+    weight: $fontWeightLight;
+    size: $fontSizeNormal;
+  }
+
+  @include white-linear-gradient;
+}
+
+// -------------------------------

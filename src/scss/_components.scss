@@ -1,0 +1,191 @@
+/*=========================================================
+================     COMPONENTS STYLES    =================
+=========================================================*/
+
+// Icons
+.icon {
+  width: pxToRem(24);
+  height: pxToRem(24);
+  display: inline-block;
+
+  background: {
+    size: cover;
+    position: center;
+    repeat: no-repeat;
+  }
+
+  &--error {
+    display: none;
+    background-image: url("Images/icon-error.svg");
+  }
+
+  &--arrow {
+    background-image: url("Images/icon-arrow.svg");
+  }
+}
+
+// Buttons
+.button {
+  &--send {
+    cursor: pointer;
+
+    padding: pxToRem(12) pxToRem(19);
+    border: 1px solid $desaturatedRed;
+    border-radius: pxToRem(25);
+    background: $redLinearGradient;
+
+    transition: box-shadow 300ms ease-in-out;
+
+    span {
+      width: pxToRem(24);
+      height: pxToRem(24);
+    }
+
+    &::before {
+      content: "";
+      background-color: rgba($white, 0.5);
+      outline: 1px solid rgba($white, 0.5);
+      border-radius: pxToRem(25);
+      opacity: 0;
+      transition: opacity 300ms ease-in-out;
+    }
+
+    &:hover {
+      box-shadow: 0 0 1.5rem 0 $desaturatedRed;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding-inline: pxToRem(38);
+    }
+  }
+}
+
+// Coming soon section
+.coming-soon {
+  max-width: pxToRem(700);
+  margin-inline: auto;
+
+  &__side-1 {
+    @include media-breakpoint-up(lg) {
+      padding: pxToRem(65) pxToRem(220) pxToRem(160) pxToRem(165);
+      background: url('Images/bg-pattern-desktop.svg') center/cover no-repeat;
+    }
+  }
+
+  &__logo {
+    margin: pxToRem(30) pxToRem(32) pxToRem(25);
+    width: pxToRem(100);
+
+    @include media-breakpoint-up(lg) {
+      margin: 0 0 pxToRem(125);
+      width: pxToRem(165);
+    }
+  }
+
+  &__mobile-hero {
+    margin-bottom: pxToRem(60);
+  }
+
+  &__content {
+    text-align: center;
+    margin: 0 pxToRem(32) pxToRem(92);
+
+    @include media-breakpoint-up(lg) {
+      margin: 0;
+      text-align: start;
+    }
+  }
+
+  &__heading {
+    margin: 0 0 pxToRem(18);
+    color: $darkGrayishRed;
+
+    line-height: pxToRem(41);
+    letter-spacing: 0.26rem;
+
+    text-transform: uppercase;
+
+    font: {
+      size: clamp($fontSizeHeadingSm, 5vw, $fontSizeHeadingLg);
+      weight: $fontWeightSemiBold;
+    }
+
+    span {
+      color: $desaturatedRed;
+      font-weight: $fontWeightLight;
+    }
+
+    @include media-breakpoint-up(lg) {
+      letter-spacing: 0.28rem;
+      line-height: pxToRem(69);
+      margin-bottom: pxToRem(20);
+    }
+  }
+
+  &__description {
+    margin: 0 0 pxToRem(34);
+
+    letter-spacing: 0.032rem;
+    line-height: pxToRem(22);
+    font-size: clamp(pxToRem(14), 5vw, pcToRem(17));
+
+    @include media-breakpoint-up(lg) {
+      line-height: pxToRem(28);
+      letter-spacing: 0.005rem;
+      margin-bottom: pxToRem(40);
+    }
+  }
+
+  &__form {
+    text-align: start;
+
+    input {
+      outline: 1px solid $desaturatedRed;
+
+      border: none;
+      border-radius: pxToRem(25);
+      background: transparent;
+
+      line-height: 1rem;
+
+      color: $desaturatedRed;
+      font-size: pxToRem(14);
+      padding: pxToRem(16) pxToRem(107.2) pxToRem(16) pxToRem(24);
+
+      width: 100%;
+
+      &:focus {
+        box-shadow: 0 0 1.5rem pxToRem(-10) $desaturatedRed;
+      }
+    }
+
+    small {
+      color: $softRed;
+    }
+
+    &.error {
+      input {
+        outline-color: $softRed;
+        outline-width: pxToRem(2);
+      }
+
+      .icon--error,
+      small {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__desktop-hero {
+    max-width: pxToRem(610);
+    justify-self: flex-end;
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: pxToRem(1440);
+  }
+}

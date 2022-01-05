@@ -1,0 +1,61 @@
+/*=========================================================
+================      LAYOUT STYLES       =================
+=========================================================*/
+
+body {
+  @include media-breakpoint-up(lg) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+// Buttons
+.button {
+  &--send {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      inset: 0;
+    }
+  }
+}
+
+// Coming soon section
+.coming-soon {
+  &__form {
+    position: relative;
+
+    button {
+      position: absolute;
+      right: -1px;
+      top: -1px;
+    }
+
+    small {
+      display: none;
+      position: absolute;
+      bottom: pxToRem(-24);
+      left: pxToRem(24);
+    }
+
+    .icon--error {
+      position: absolute;
+      top: 50%;
+      right: pxToRem(80);
+      transform: translateY(-50%);
+
+      @include media-breakpoint-up(lg) {
+        right: pxToRem(115);
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    display: grid;
+    grid-template-columns: 1fr 0.75fr;
+  }
+}
